@@ -45,43 +45,51 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
+            try {
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: "refs/tags/latest"
               })
+            } catch (e) { console.log("error") }
 
       - name: Delete
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
+            try {
               await github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: "tags/latest",
                 sha: context.sha
               })
+            } catch (e) { console.log("error") }
 
       - name: Create
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
+            try {
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: "refs/tags/latest"
               })
+            } catch (e) { console.log("error") }
 
       - name: Create
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
+            try {
               await github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: "tags/latest",
                 sha: context.sha
               })
+            } catch (e) { console.log("error") }
