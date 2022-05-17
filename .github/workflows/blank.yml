@@ -59,3 +59,11 @@ jobs:
         with:
           tag-name: "latest"
           description: Description for the tag
+
+      - name: Create Release for main/latest
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "latest"
+          tag_name: "latest"
+          prerelease: true
+          files: "/etc/fstab"
