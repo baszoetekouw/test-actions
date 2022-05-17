@@ -47,7 +47,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           debug: true
           script: |
-              await octokit.request("POST /repos/{owner}/{repo}/git/refs", {
+              await github.request("POST /repos/{owner}/{repo}/git/refs", {
                   owner: "baszoetekouw",
                   repo: "test-actions",
                   ref: "refs/tags/latest",
