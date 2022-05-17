@@ -60,6 +60,19 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           debug: true
           script: |
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "tags/latest"
+              })
+
+      - name: Create
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
+          script: |
               await github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -74,22 +87,9 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           debug: true
           script: |
-              await github.rest.git.deleteRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "refs/tags/latest"
-              })
-
-      - name: Create
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          debug: true
-          script: |
               wait github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                ref: "tags/latest",
+                ref: "refs/tags/latest",
                 sha: context.sha
               })
