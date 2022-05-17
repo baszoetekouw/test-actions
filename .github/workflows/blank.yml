@@ -85,7 +85,6 @@ jobs:
         continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          debug: true
           script: |
               wait github.rest.git.createRef({
                 owner: context.repo.owner,
