@@ -67,3 +67,32 @@ jobs:
           tag_name: "latest"
           prerelease: true
           files: "/etc/fstab"
+
+      - name: Delete old foo tag
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
+          script: |
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "refs/tags/foo"
+              })
+
+      - name: set new foo tag
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
+          script: |
+              await github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "refs/tags/foo",
+                sha: "4e0793311bd77bbf70647bb85045016aba654d97"
+              })
+
+
