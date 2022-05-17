@@ -40,6 +40,20 @@ jobs:
         with:
           script: console.log(context.rep)
 
+      - name: create 1
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
+          script: |
+              await octokit.request("POST /repos/{owner}/{repo}/git/refs", {
+                  owner: "baszoetekouw",
+                  repo: "test-actions",
+                  ref: "refs/tags/latest",
+                  sha: "2b910987a7a3bbed0f7436a90111bffec5ec902e"
+              });
+
       - name: Delete
         uses: actions/github-script@v6
         continue-on-error: true
@@ -65,6 +79,7 @@ jobs:
                 repo: context.repo.repo,
                 ref: "tags/latest"
               })
+
 
       - name: Create
         uses: actions/github-script@v6
