@@ -54,6 +54,13 @@ jobs:
                   sha: "2b910987a7a3bbed0f7436a90111bffec5ec902e"
               });
 
+      - name: Tag Repo
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: "foobar"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Delete
         uses: actions/github-script@v6
         continue-on-error: true
