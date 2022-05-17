@@ -92,7 +92,7 @@ jobs:
               await github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                ref: "tags/foo",
+                ref: "refs/tags/foo",
                 sha: "4e0793311bd77bbf70647bb85045016aba654d97"
               })
 
