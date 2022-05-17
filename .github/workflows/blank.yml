@@ -42,8 +42,10 @@ jobs:
 
       - name: Delete
         uses: actions/github-script@v6
+        continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
           script: |
             try {
               await github.rest.git.deleteRef({
@@ -55,8 +57,10 @@ jobs:
 
       - name: Delete
         uses: actions/github-script@v6
+        continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
           script: |
             try {
               await github.rest.git.createRef({
@@ -69,8 +73,10 @@ jobs:
 
       - name: Create
         uses: actions/github-script@v6
+        continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
           script: |
             try {
               await github.rest.git.deleteRef({
@@ -82,8 +88,10 @@ jobs:
 
       - name: Create
         uses: actions/github-script@v6
+        continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
           script: |
             try {
               await github.rest.git.createRef({
