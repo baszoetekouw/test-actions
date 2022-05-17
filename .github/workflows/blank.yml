@@ -61,14 +61,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update release
-        uses: johnwbyrd/update-release@v1
+      - name: update release
+        id: update_release
+        uses: tubone24/update_release@v1.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: "/etc/fstab"
-          release: "latest"
-          tags: "latest"
+          release_name: "latest"
           prerelease: true
+          body: test_body
 
       - name: Delete
         uses: actions/github-script@v6
