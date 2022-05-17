@@ -84,6 +84,7 @@ jobs:
       - name: set new foo tag
         uses: actions/github-script@v6
         continue-on-error: true
+        permissions: write-all
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           debug: true
