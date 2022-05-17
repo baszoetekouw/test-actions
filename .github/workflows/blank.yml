@@ -54,73 +54,8 @@ jobs:
                   sha: "2b910987a7a3bbed0f7436a90111bffec5ec902e"
               });
 
-      - name: Tag Repo
-        uses: richardsimko/update-tag@v1
+      - name: Run latest-tag
+        uses: EndBug/latest-tag@latest
         with:
-          tag_name: "foobar"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: update release
-        id: update_release
-        uses: tubone24/update_release@v1.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          release_name: "latest"
-          prerelease: true
-          body: test_body
-
-      - name: Delete
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          debug: true
-          script: |
-              await github.rest.git.deleteRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "refs/tags/latest"
-              })
-
-      - name: Delete
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          debug: true
-          script: |
-              await github.rest.git.deleteRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "tags/latest"
-              })
-
-
-      - name: Create
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          debug: true
-          script: |
-              await github.rest.git.createRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "tags/latest",
-                sha: context.sha
-              })
-
-      - name: Create
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-              wait github.rest.git.createRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "refs/tags/latest",
-                sha: context.sha
-              })
+          tag-name: "latest"
+          description: Description for the tag
