@@ -17,6 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    permissions: write-all
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -84,7 +85,6 @@ jobs:
       - name: set new foo tag
         uses: actions/github-script@v6
         continue-on-error: true
-        permissions: write-all
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           debug: true
