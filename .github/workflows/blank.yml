@@ -96,4 +96,18 @@ jobs:
                 sha: "4e0793311bd77bbf70647bb85045016aba654d97"
               })
 
+      - name: update latest
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          debug: true
+          script: |
+              await github.rest.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "refs/tags/latest",
+                sha: "4e0793311bd77bbf70647bb85045016aba654d97"
+              })
+
 
