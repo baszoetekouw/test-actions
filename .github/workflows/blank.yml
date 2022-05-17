@@ -78,7 +78,7 @@ jobs:
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                ref: "refs/tags/foo"
+                ref: "tags/foo"
               })
 
       - name: set new foo tag
